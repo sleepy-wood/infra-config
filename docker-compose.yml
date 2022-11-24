@@ -5,6 +5,7 @@ services:
         build:
             context: client-web
             dockerfile: Dockerfile.web
+        restart: unless-stopped
         ports:
             - 8081:80
 
@@ -44,6 +45,8 @@ services:
             MYSQL_DATABASE: sleepywood
             # MYSQL_USER: mariadb
             # MYSQL_PASSWORD: mariadb
+        ports:
+            - 3306:3306
 
     redis:
         image: redis:7
