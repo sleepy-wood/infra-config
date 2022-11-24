@@ -1,0 +1,10 @@
+[submodule "client-web"]
+	path = client-web
+	url = https://github.com/sleepy-wood/client-web
+    branch = dev
+    ignore = dirty
+[submodule "server-api"]
+	path = server-api
+	url = https://github.com/sleepy-wood/server-api
+    branch = dev
+    ignore = dirty
