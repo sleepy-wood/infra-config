@@ -1,0 +1,33 @@
+{
+	admin off
+	auto_https off
+}
+
+http://
+
+log
+
+header -Server
+
+handle_errors {
+	header -Server
+}
+
+@api {
+	path_regexp ^/(api|resources|temp|secure)/
+}
+route @api {
+	reverse_proxy api.{$COPILOT_SERVICE_DISCOVERY_ENDPOINT}:3000
+}
+
+route /assets/* {
+	uri strip_prefix /assets
+	s3proxy {
+		bucket {$ASSETS_NAME}
+	}
+}
+
+route {
+	try_files {path} {path}/ /index.html
+	file_server
+}
