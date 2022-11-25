@@ -240,5 +240,7 @@ cython_debug/
 #.idea/
 
 *.sql
-dumps/
+dumps/*
 !dumps/.gitkeep
+uploads.api/*
+!uploads.api/.gitkeep
