@@ -30,6 +30,8 @@ services:
             THROTTLE_LIMIT: 1000
             TZ: Asia/Seoul
             locale: ko-KR
+        env_file:
+            - .env
         depends_on:
             - db
             - redis
@@ -45,6 +47,8 @@ services:
             MYSQL_DATABASE: sleepywood
             # MYSQL_USER: mariadb
             # MYSQL_PASSWORD: mariadb
+        env_file:
+            - .env
         ports:
             - 3306:3306
 
