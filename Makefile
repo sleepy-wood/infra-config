@@ -1,10 +1,5 @@
-.PHONY: copy
-copy:
-	cp -r *.web client-web
-	cp -r *.api server-api
-
 .PHONY: up
-up: copy
+up:
 	docker compose up -d
 
 .PHONY: down
@@ -16,7 +11,7 @@ logs:
 	docker compose logs -f
 
 .PHONY: build
-build: copy
+build:
 	docker compose build
 
 .PHONY: fix-sql

@@ -1,19 +1,19 @@
 version: "3.8"
 
+name: infra-tmp
+
 services:
     web:
-        build:
-            context: client-web
-            dockerfile: Dockerfile.web
+        image: sleepy-wood/client-web-dev:latest
         restart: unless-stopped
         ports:
             - 8081:80
 
     api:
-        build:
-            context: server-api
-            dockerfile: Dockerfile.api
+        image: sleepy-wood/server-api-dev:latest
         restart: unless-stopped
+        volumes:
+            - ./uploads.api:/app/uploads
         environment:
             MYSQL_DATABASE: sleepywood
             MYSQL_HOST: db
