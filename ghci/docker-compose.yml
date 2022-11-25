@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+    web:
+        image: sleepy-wood/client-web-dev:latest
+        restart: unless-stopped
+        ports:
+            - 8081:80
+
+    api:
+        image: sleepy-wood/server-api-dev:latest
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: sleepywood
+            MYSQL_HOST: db
+            MYSQL_PORT: 3306
+            REDIS_HOST: redis
+            REDIS_PORT: 6379
+            PORT: 3000
+            THROTTLE_TTL: 60
+            THROTTLE_LIMIT: 1000
+            TZ: Asia/Seoul
+            locale: ko-KR
+            # MYSQL_USER: mariadb
+            # MYSQL_PASSWORD: mariadb
+            # SECRET: abcd
+            # SALT: 1234
+            # WEATHER_API_KEY: 1234
+            # COPILOT_ENVIRONMENT_NAME: test
+        env_file:
+            - ../.env
+        depends_on:
+            - db
+            - redis
+
+    db:
+        image: mariadb:10
+        restart: unless-stopped
+        volumes:
+            - mariadb-data:/var/lib/mysql
+            - ../dumps.db:/docker-entrypoint-initdb.d
+        environment:
+            MYSQL_DATABASE: sleepywood
+            # MYSQL_ROOT_PASSWORD: mariadb
+            # MYSQL_USER: mariadb
+            # MYSQL_PASSWORD: mariadb
+        env_file:
+            - ../.env
+        ports:
+            - 3306:3306
+
+    redis:
+        image: redis:7
+        restart: unless-stopped
+
+volumes:
+    mariadb-data:
