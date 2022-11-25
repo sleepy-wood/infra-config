@@ -244,3 +244,4 @@ dumps/*
 !dumps/.gitkeep
 uploads.api/*
 !uploads.api/.gitkeep
+ddns/config.json
