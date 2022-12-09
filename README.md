@@ -11,7 +11,7 @@
   <a href="https://github.com/sleepy-wood">
     <img src="https://github.com/sleepy-wood/client-web/blob/dev/src/assets/images/logo.png" alt="Logo" width="120" height="120">
   </a>
-  <h3 align="center">infra config(temp)</h3>
+  <h3 align="center">infra config(Deprecated)</h3>
 </div>
 
 <!-- TABLE OF CONTENTS -->
